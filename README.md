@@ -1,61 +1,49 @@
-# coupon-system
-# 🏷️ Coupon System API
+# Coupon System API
 
-نظام API مبسط لإدارة الكوبونات، يهدف إلى توفير واجهات برمجية (RESTful APIs) تتيح إضافة، تعديل، عرض، وحذف الكوبونات في بيئة سهلة ومناسبة للتكامل مع تطبيقات الويب أو الجوال.
+A REST API for managing coupons and recording coupon usage. The repository contains an ASP.NET Core Web API project with Entity Framework Core and SQL Server.
 
-## ⚙️ المميزات الرئيسية
+## Features
 
-- إنشاء كوبون جديد مع تحديد الخصم وتاريخ الانتهاء.
-- عرض جميع الكوبونات المتاحة.
-- تعديل بيانات أي كوبون موجود.
-- حذف كوبونات منتهية أو غير مرغوب فيها.
-- التحقق من صلاحية الكوبون وتطبيقه على الطلبات.
+- Create, list, update, and delete coupons.
+- Record and review coupon usage.
+- Use Entity Framework Core migrations.
+- Explore the API with Swagger in the Development environment.
 
-## 🛠️ التقنية المستخدمة
+## Tech stack
 
-- **Backend Framework:** ASP.NET Core Web API  
-- **Database:** SQL Server (أو SQLite أثناء التطوير)
-- **ORM:** Entity Framework Core  
-- **Architecture:** RESTful API
+- .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- Swagger / OpenAPI
 
-## 📁 هيكلية المشروع
-CouponAPI/
+## Project layout
+
+```text
+coupon-system/
 ├── Controllers/
-│ └── CouponsController.cs
-├── Models/
-│ └── Coupon.cs
-├── Data/
-│ └── AppDbContext.cs
-├── DTOs/
-│ └── CouponDto.cs
+│   ├── CouponsController.cs
+│   └── CouponUsagesController.cs
+├── Migrations/
+├── data/
+├── models/
 ├── Program.cs
-├── Startup.cs
-└── README.md
+└── appsettings.json
+```
 
+## Run locally
 
-
-## 📥 كيفية التشغيل محليًا
-
-1. **استنساخ المشروع:**
+1. Install the .NET 8 SDK and SQL Server.
+2. Update `ConnectionStrings:DefaultConnection` in `coupon-system/appsettings.json` to point to your SQL Server instance.
+3. From the repository root, run:
 
 ```bash
-git clone https://github.com/اسم-المستخدم/CouponAPI.git
-cd CouponAPI
+dotnet restore coupon-system/coupon-system.csproj
+dotnet run --project coupon-system/coupon-system.csproj
+```
 
+When running in Development, open the Swagger URL printed by the application to inspect and try the API endpoints. Apply database migrations before using the API if the database has not been initialized.
 
-تهيئة قاعدة البيانات:
+## Notes
 
-تأكد من وجود اتصال بقاعدة البيانات في appsettings.json.
-
-ثم قم بتحديث قاعدة البيانات
-dotnet ef database update
-dotnet run
-
-API ستكون متاحة على: https://localhost:5001/api/coupons
-النظام قابل للتوسعة ليدعم أنواع خصومات مختلفة (نسبة مئوية أو مبلغ ثابت).
-🧑‍💻 المطور
-الاسم: [سليمان الحربي]
-
-البريد: sulimansi582@gmail.com
-
-GitHub: https://github.com/sulimanalhar
+The project currently targets .NET 8. Configure a database connection appropriate for your local environment before running it.
